@@ -1,0 +1,12 @@
+Webpack
+   Babel
+   Sass
+   Eslint
+   2 Mods
+      - Dev
+	Dev server, sourcemap, eslint, not minified js & css
+      - Prod
+	Minified code
+Git
+   Development
+   Production
