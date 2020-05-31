@@ -1,0 +1,43 @@
+.excel__table
+  height: 100%
+  overflow-x: auto
+  font-size: 14px
+  .row
+    display: flex
+    flex-direction: row
+    height: 20px
+    min-height: $row-height
+    &-info
+      display: flex
+      justify-content: center
+      align-items: center
+      min-width: $number-cell-width
+      height: 100%
+      border: 1px solid $border-color
+      background: #f8f9fa
+      border-top: none
+    &-data
+      display: flex
+  .column
+    display: flex
+    justify-content: center
+    align-items: center
+    background: #f8f9fa
+    min-width: 40px
+    width: $column-width
+    border: 1px solid $border-color
+    border-top: none
+    border-left: none
+  .cell
+    min-width: 40px
+    height: 20px
+    width: $column-width
+    height: 100%
+    border: 1px solid #e2e3e3
+    border-top: none
+    border-left: none
+    outline: none
+    &.selected
+      border: none
+      outline: 2px solid #3c74ff
+      z-index: 2
