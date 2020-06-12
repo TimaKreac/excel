@@ -1,8 +1,15 @@
-import './sass/main.sass'
+import '@/sass/main.sass'
+import {Excel} from '@/components/excel/Excel'
+import {Header} from '@/components/header/Header'
+import {Formula} from '@/components/formula/Formula'
+import {Toolbar} from '@/components/toolbar/Toolbar'
+import {Table} from '@/components/table/Table'
 
-async function f() {
-  await Promise.resolve('async')
-  console.log('1')
-  console.log('')
-}
-f()
+const excel = new Excel({
+  selector: '#app',
+  options: {
+    components: [Header, Toolbar, Formula, Table],
+  },
+})
+
+excel.render()
