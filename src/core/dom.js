@@ -4,12 +4,24 @@ class Dom {
       typeof selector === 'string' ? document.querySelector(selector) : selector
   }
 
+  get data() {
+    return this.$el.dataset
+  }
+
   html(html) {
     if (typeof html === 'string') {
       this.$el.innerHTML = html
       return this
     }
     return this.$el.outerHTML.trim()
+  }
+
+  css(styles = {}) {
+    Object
+        .keys(styles)
+        .forEach(key => {
+          this.$el.style[key] = styles[key]
+        })
   }
 
   clear() {
@@ -34,6 +46,18 @@ class Dom {
       this.$el.append(node)
     }
     return this
+  }
+
+  closest(selector) {
+    return $(this.$el.closest(selector))
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect()
+  }
+
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector)
   }
 }
 
