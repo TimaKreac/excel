@@ -1,9 +1,12 @@
+import {$} from '@core/dom.js'
 import {Component} from '@core/Component'
+
 export class Formula extends Component {
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
       name: 'Formula',
-      listeners: ['input', 'click'],
+      listeners: ['input', 'keydown'],
+      ...options,
     })
   }
 
@@ -12,14 +15,32 @@ export class Formula extends Component {
   toHTML() {
     return `
     <div class="info">fx</div>
-    <div class="input" contenteditable="true" spellcheck="false"></div>
+    <div id="formula" class="input" contenteditable="true" spellcheck="false">
+    </div>
     `
   }
 
-  onInput(e) {
-    console.log(this.$root)
+  init() {
+    super.init()
+    this.$formula = this.$root.find('#formula')
+
+    this.$on('table:select', $cell => {
+      this.$formula.text($cell.text())
+    })
+    this.$on('table:input', $cell => {
+      this.$formula.text($cell.text())
+    })
   }
-  onClick(e) {
-    console.log(this.$root)
+
+  onInput(event) {
+    this.$emit('formula:input', $(event.target).text())
+  }
+
+  onKeydown(event) {
+    const keys = ['Enter', 'Tab']
+    if (keys.includes(event.key)) {
+      event.preventDefault()
+      this.$emit('formula:enter')
+    }
   }
 }
